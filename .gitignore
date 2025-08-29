@@ -10,7 +10,12 @@
 
 # production
 /build
-
+# local env
+.env
+# service account files
+*.json
+*.pem
+*.p12
 # misc
 .DS_Store
 .env.local
