@@ -1,70 +1,132 @@
-# Getting Started with Create React App
+# Modestify
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Modestify is a Hebrew RTL full stack web application for modest fashion discovery. The platform centralizes modest clothing items from multiple sources so users can browse relevant products in one place instead of manually searching through separate catalogs.
 
-## Available Scripts
+This project was developed as a final software engineering project. It demonstrates a complete web application flow, including product browsing, user authentication, favorites, cart management, order history, admin product management, and PayPal checkout integration.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- Hebrew RTL interface designed for a modest fashion audience
+- Product browsing by categories and individual product pages
+- User registration and login
+- Favorites system for authenticated users
+- Shopping cart functionality
+- Order history for registered users
+- Admin dashboard for managing products and approval status
+- Cloud database integration for application data
+- Backend server for external service communication
+- PayPal checkout integration in development/sandbox mode
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Frontend
 
-### `npm test`
+- React
+- JavaScript
+- React Router
+- Bootstrap
+- React Bootstrap
+- CSS with RTL layout support
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Backend
 
-### `npm run build`
+- Node.js
+- Express
+- CORS
+- dotenv
+- node-fetch
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Database and Services
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Firebase Authentication
+- Firebase Firestore
+- Firebase Admin SDK
+- PayPal API
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Tools
 
-### `npm run eject`
+- Git
+- GitHub
+- npm
+- VS Code
+- Cursor AI
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Main Pages
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application includes the following main areas:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Home page
+- Categories page
+- Category page
+- Product page
+- Login and registration pages
+- Cart page
+- User profile page
+- Favorites page
+- Order history page
+- Admin dashboard
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Backend
 
-## Learn More
+The backend server is responsible for external service communication and order-related operations.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Main backend responsibilities:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Creating checkout orders
+- Capturing completed orders
+- Saving order data to the database
+- Communicating securely with external services from the server side
 
-### Code Splitting
+## Local Setup
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Clone the repository:
 
-### Analyzing the Bundle Size
+```bash
+git clone https://github.com/NikitaSayenko/Modestify.git
+cd Modestify
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Install dependencies:
 
-### Making a Progressive Web App
+```bash
+npm install
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Create a local environment file for the required development configuration. Runtime configuration values are intentionally not included in the repository.
 
-### Advanced Configuration
+Run the backend server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+node server.js
+```
 
-### Deployment
+Run the React client in a second terminal:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+npm start
+```
 
-### `npm run build` fails to minify
+The client runs on:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```text
+http://localhost:3000
+```
+
+The backend runs on:
+
+```text
+http://localhost:4000
+```
+
+## Project Notes
+
+- The project currently runs locally and does not have a public live demo yet.
+- Runtime configuration should be stored locally and not committed to the repository.
+- The application is built for Hebrew RTL usage.
+- The project was created as a practical full stack final project and is still suitable for future improvement and deployment.
+
+## Author
+
+Nikita Sayenko  
+GitHub: https://github.com/NikitaSayenko  
+LinkedIn: https://www.linkedin.com/in/nikita-sayenko-b40606411/
