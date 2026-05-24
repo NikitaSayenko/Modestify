@@ -49,7 +49,7 @@ This project was developed as a final software engineering project. It demonstra
 - GitHub
 - npm
 - VS Code
-- Cursor AI
+
 
 ## Main Pages
 
