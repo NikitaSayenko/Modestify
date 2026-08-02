@@ -1,7 +1,7 @@
 // src/context/AuthContext.js
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 
 const AuthContext = createContext();
@@ -13,32 +13,37 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setFirebaseUser(user);
-        // fetch Firestore profile
-        try {
-          const docRef  = doc(db, "users", user.uid);
-          const docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            setProfile(docSnap.data());
-          } else {
-            setProfile(null);
-          }
-        } catch (err) {
-          console.error("Error fetching user profile:", err);
+      try {
+        if (user) {
+          setFirebaseUser(user);
+          // load user profile (e.g., role) if present
+          const ref  = doc(db, "users", user.uid);
+          const snap = await getDoc(ref);
+          setProfile(snap.exists() ? { id: snap.id, ...snap.data() } : null);
+        } else {
+          setFirebaseUser(null);
           setProfile(null);
         }
-      } else {
-        setFirebaseUser(null);
-        setProfile(null);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
 
+  // Expose a logout that NavBar (and others) can call
+  async function logout() {
+    try {
+      await signOut(auth);
+      // onAuthStateChanged will clear firebaseUser/profile
+    } catch (e) {
+      console.error("logout failed:", e);
+      throw e;
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ firebaseUser, profile, loading }}>
+    <AuthContext.Provider value={{ firebaseUser, profile, loading, logout }}>
       {children}
     </AuthContext.Provider>
   );

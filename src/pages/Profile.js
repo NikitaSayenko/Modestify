@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../firebaseConfig";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext";
+
 
 function Profile() {
   const [user, setUser] = useState(null);
@@ -10,10 +10,10 @@ function Profile() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setLoading(true); // התחלת טעינה
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false); // סיום טעינה
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -23,7 +23,7 @@ function Profile() {
     navigate("/");
   };
 
-  if (loading) return <h1>🔄 טוען נתוני משתמש...</h1>;
+  if (loading) return <h1> טוען נתוני משתמש...</h1>;
 
   return (
     <div>
@@ -33,11 +33,11 @@ function Profile() {
           <p>שלום, {user.displayName || user.email}</p>
           <p>אימייל: {user.email}</p>
           <button onClick={handleLogout} style={{ backgroundColor: "red", color: "white" }}>
-            🔴 התנתק
+            התנתק
           </button>
         </div>
       ) : (
-        <p>⚠️ עליך להתחבר כדי לגשת לאזור האישי.</p>
+        <p> עליך להתחבר כדי לגשת לאזור האישי.</p>
       )}
     </div>
   );

@@ -1,27 +1,197 @@
-.navbar {
-    background-color: #007bff;
-    padding: 10px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .navbar ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-  }
-  
-  .navbar li {
-    display: inline;
-  }
-  
-  .navbar a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-  }
-  
-  .navbar a:hover {
-    text-decoration: underline;
-  }
-  
+/* HEADER (light bar) */
+.header{
+  position: sticky; top:0; z-index:50;
+  background: var(--cream);
+  border-bottom: 1px solid var(--sand);
+}
+
+/* BAR */
+.navbar{
+  display:flex; align-items:center; justify-content:space-between;
+  max-width:1160px; margin:0 auto; padding:10px 16px;
+  gap:16px; direction:rtl; color:var(--ink);
+  flex-wrap: nowrap;               /* stay on one line */
+}
+
+/* left + right groups */
+.nav-left,
+.nav-right{
+  display:flex; align-items:center; gap:12px;
+  min-width: 0;                    /* allow children to shrink */
+}
+
+.nav-left{ flex: 0 0 auto; }
+.nav-right{ flex: 1 1 auto; }      /* this side can grow/shrink */
+
+/* brand with logo */
+.brand-link{
+  display:inline-flex; align-items:center; gap:8px;
+  text-decoration:none; font-weight:800; font-size:18px;
+  color:var(--ink); white-space:nowrap;
+}
+.brand-link:hover{ color:var(--primary); }
+
+.brand-logo{
+  height:28px; width:auto; display:block; border-radius:6px; object-fit:contain;
+}
+.brand-text{ line-height:1; }
+
+/* main nav links */
+.nav-links{
+  display:flex; gap:16px; margin:0; padding:0; list-style:none;
+  flex-wrap: nowrap; white-space: nowrap; /* never wrap */
+}
+.nav-links a{ color:var(--brand); text-decoration:none; font-weight:600; }
+.nav-links a:hover{ text-decoration:underline; }
+
+/* search – will take available space but shrink first */
+.search-wrap{
+  position:relative;
+  flex: 1 1 420px;                 /* preferred width, but shrinkable */
+  min-width: 220px;                /* don’t get too tiny */
+  max-width: 560px;
+  overflow:hidden;                 /* avoid jiggle */
+}
+.search-wrap form{ display:flex; width:100%; }
+.search-input{
+  flex:1 1 auto; min-width:0; width:100%;
+  height:36px; box-sizing:border-box;
+  padding:10px 14px; border-radius:999px;
+  border:1px solid var(--sand); outline:none;
+  background:#fff; color:var(--ink);
+}
+.search-input::placeholder{ color:#9aa1ab; }
+
+/* buttons */
+.btn-solid{
+  background:var(--rose); color:#5a3c39;
+  border:1px solid var(--rose); border-radius:999px;
+  padding:8px 14px; font-weight:700; cursor:pointer;
+  white-space: nowrap;
+}
+.btn-solid:hover{ background:var(--rose-600); border-color:var(--rose-600); }
+
+.btn-ghost{
+  background:transparent; color:var(--brand);
+  border:1px solid var(--brand); border-radius:999px;
+  padding:8px 14px; font-weight:700; cursor:pointer;
+  white-space: nowrap;
+}
+.btn-ghost:hover{ background:rgba(123,94,75,.08); }
+
+.cart-link .cart-count{ font-weight:800; color:var(--brand); }
+
+/* Small screens: hide text to keep single row (optional) */
+@media (max-width: 520px){
+  .brand-text{ display:none; }
+}
+/* keep the search form in one row and remove default form margin */
+.search-wrap form{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  width:100%;
+  margin:0;
+}
+
+/* the input already has height; just ensure it can shrink */
+.search-wrap .search-input{
+  flex:1 1 auto;
+  min-width:0;
+}
+
+/* make the submit button compact and non-wrapping */
+.search-wrap .search-submit,
+.search-wrap button[type="submit"]{
+  flex:0 0 auto;
+  height:36px;
+  padding:0 12px;
+  border-radius:999px;
+  border:1px solid var(--brand);
+  background:#fff;
+  color:var(--brand);
+  font-weight:700;
+  white-space:nowrap;
+  cursor:pointer;
+}
+
+.search-wrap .search-submit:hover{
+  background:rgba(123,94,75,.08);
+}
+.search-wrap form{ display:flex; align-items:center; gap:8px; width:100%; margin:0; }
+.search-wrap .search-input{ flex:1 1 auto; min-width:0; }
+
+.search-wrap .search-submit,
+.search-wrap button[type="submit"]{
+  flex:0 0 auto; height:36px; padding:0 12px;
+  border-radius:999px; border:1px solid var(--brand);
+  background:#fff; color:var(--brand); font-weight:700; white-space:nowrap;
+}
+
+.search-wrap .search-clear{
+  flex:0 0 auto; height:36px; padding:0 10px;
+  border-radius:999px; border:1px solid var(--sand);
+  background:#fff; white-space:nowrap;
+}
+.header .search-clear { display: none; }
+/* Hard-lock the navbar to a single row */
+.header .navbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  flex-wrap: nowrap !important;    /* never wrap */
+}
+
+.header .nav-left,
+.header .nav-right{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;                    /* allow shrinking */
+}
+
+.header .nav-left{ flex: 0 0 auto; }
+.header .nav-right{ flex: 1 1 auto; }
+
+/* left links must not create line breaks */
+.header .nav-links{
+  display: flex;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap !important;
+  flex: 0 0 auto;
+}
+
+/* brand text should not wrap either */
+.header .brand-link{ display:inline-flex; align-items:center; gap:8px; white-space:nowrap; }
+
+/* search can grow but must also shrink before wrapping */
+.header .search-wrap{
+  flex: 1 1 480px;
+  min-width: 0 !important;        /* critical: allow shrink to 0 */
+  max-width: 560px;
+}
+.header .search-bar{ width:100%; margin:0; }  /* if your SearchBar renders a form */
+.header .search-input{ width:100%; }
+
+/* nav buttons must stay inline and compact */
+.header .btn-ghost,
+.header .btn-solid{
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap !important;
+  width: auto !important;
+  max-width: none !important;
+  flex: 0 0 auto !important;
+  padding: 8px 12px;               /* keep them short so they don't force wrap */
+}
+
+/* stabilize bar height */
+.header .navbar{ min-height: 52px; }

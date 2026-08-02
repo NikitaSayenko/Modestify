@@ -14,7 +14,7 @@ root.render(
      <PayPalScriptProvider
       options={{
       "client-id": process.env.REACT_APP_PAYPAL_CLIENT_ID,
-      currency:   "USD",
+      currency:   "ILS",
       intent:   "capture"
       }}
       >

@@ -5,15 +5,15 @@ import { useAuth } from "../context/AuthContext";
 export default function AdminRoute({ children }) {
   const { firebaseUser, profile, loading } = useAuth();
 
-  // 1) still loading auth/profile?
-  if (loading) return <h1>🔄 טוען הרשאה…</h1>;
+  // While authentication/profile is loading, block rendering
+  if (loading) return <h1>Loading authorization…</h1>;
 
-  // 2) not even signed in?
+  // If user is not signed in, redirect to login
   if (!firebaseUser) return <Navigate to="/login" replace />;
 
-  // 3) signed in but not an admin?
+  // If signed in but role is not admin, redirect to home
   if (profile?.role !== "admin") return <Navigate to="/" replace />;
 
-  // 4) signed in & role==="admin" → show the page
+  // Only admins can access the child component/page
   return children;
 }
